@@ -104,6 +104,8 @@ https://stackoverflow.com/questions/39055728/importance-of-virtual-environment-s
 
 Virtual environment digunakan untuk mengisolasi lingkungan proyek agar tidak bertabrakan dengan proyek lain yang berbeda versi. Jika kita tidak menggunakan virtual environment, kemungkinan error akan besar karena versi paket atau dependensi antar proyek belum tentu sama meskipun modulnya sama, sehingga hampir tidak mungkin untuk bisa berjalan tanpa error. 
 
+sumber: https://stackoverflow.com/a/44392668
+
 <h3>D.</h3> 
 
 MVT, MVC, dan MVVM sama-sama merupakan pola desain untuk pengembangan aplikasi. MVT atau model view dan template merupakan pola desasin yang digunakan dalam framework Django. MVC atau model view controller merupakan pola desain yang digunakan oleh mayoritas framework. Perlu diketahui bahwa view di MVT dan di MVC berbeda. View pada MVT ekuivalen dengan controller pada MVC. MVVM atau Model View View Model adalah pengembangan dari MVC. Model MVC ini menyelesaikan kekurangan pada model MVC yaitu dengan membuat separasi jelas antara business logic dan data presentation logic. 
