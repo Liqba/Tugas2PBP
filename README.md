@@ -1,4 +1,4 @@
-link [Adaptable](https://duckduckgo.com "Tugas 2 PBP"). 
+link [Adaptable](https://xpnse.adaptable.app/ "Tugas 2 PBP"). 
 
 pertanyaan:
 
