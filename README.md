@@ -98,6 +98,8 @@ https://stackoverflow.com/questions/39055728/importance-of-virtual-environment-s
 
 <h3>B.</h3> 
 
+![bagan](image.png)
+
 <h3>C.</h3> 
 
 <h3>D.</h3> 
