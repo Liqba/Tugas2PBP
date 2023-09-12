@@ -102,13 +102,13 @@ https://stackoverflow.com/questions/39055728/importance-of-virtual-environment-s
 
 <h3>C.</h3> 
 
-Virtual environment digunakan untuk mengisolasi lingkungan proyek agar tidak bertabrakan dengan proyek lain yang berbeda versi. Jika kita tidak menggunakan virtual environment, kemungkinan error akan besar karena versi paket atau dependensi antar proyek belum tentu sama meskipun modulnya sama, sehingga hampir tidak mungkin untuk bisa berjalan tanpa error. 
+Virtual environment digunakan untuk mengisolasi lingkungan proyek agar tidak bertabrakan dengan proyek lain yang berbeda versi. Jika kita tidak menggunakan virtual environment kita masih tetap dapat membuat aplikasi web berbasis Django. Namun, kemungkinan error akan besar karena versi paket atau dependensi antar proyek belum tentu sama meskipun modulnya sama. 
 
 sumber: https://stackoverflow.com/a/44392668
 
 <h3>D.</h3> 
 
-MVT, MVC, dan MVVM sama-sama merupakan pola desain untuk pengembangan aplikasi. MVT atau model view dan template merupakan pola desasin yang digunakan dalam framework Django. MVC atau model view controller merupakan pola desain yang digunakan oleh mayoritas framework. Perlu diketahui bahwa view di MVT dan di MVC berbeda. View pada MVT ekuivalen dengan controller pada MVC. MVVM atau Model View View Model adalah pengembangan dari MVC. Model MVC ini menyelesaikan kekurangan pada model MVC yaitu dengan membuat separasi jelas antara business logic dan data presentation logic. 
+MVT, MVC, dan MVVM ketiganya merupakan pola desain arsitektur untuk pengembangan aplikasi. MVC atau model view controller merupakan pola desain. MVC terbagi menjadi tiga yaitu Model untuk mengatur logika bisnis, View untuk menampilkan data, dan Controller untuk menghubungkan model dan view. MVT atau model view template merupakan variasi dari pola desain MVC yang digunakan dalam framework Django. Perlu diketahui bahwa view di MVT dan di MVC berbeda. View pada MVT ekuivalen dengan controller pada MVC. MVVM atau Model View View Model adalah pengembangan dari MVC. Model MVC ini menyelesaikan kekurangan pada model MVC yaitu dengan membuat separasi jelas antara business logic dan data presentation logic. 
 
 Sumber:
 https://www.geeksforgeeks.org/difference-between-mvc-mvp-and-mvvm-architecture-pattern-in-android/
