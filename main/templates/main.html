@@ -1,65 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pelacak Pengeluaran</title>
-    <style>
-        * {
-        box-sizing: border-box;
-        }
-        body {
-        background-color: #f7f7f7;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        margin: 0;
-        font-family: 'Lato', sans-serif;
-        }
-    </style>
-    </head>
-    <body>
-    <h2>Pelacak Pengeluaran</h2>
+{% extends 'base.html' %}
 
-    <div class="container">
-        <h4>Saldo Anda</h4>
-        <h1 id="balance">Rp. 0,00</h1>
-        <div class="inc-exp-container">
-        <div>
-            <h4>Pendapatan</h4>
-            <p id="money-plus" class="money plus">+\Rp. 0,00</p>
-        </div>
-        <div>
-            <h4>Pengeluaran</h4>
-            <p id="money-minus" class="money minus">-\Rp. 0,00</p>
-        </div>
-        </div>
-        <button class="btn">Detail</button>
-        <ul id="list" class="list"></ul>
-        <h3>Tambahkan transaksi baru</h3>
-        <form id="form">
-        <div class="form-control">
-            <label for="text">Barang/Jasa</label>
-            <input type="text" id="text" placeholder="Masukkan text..." />
-        </div>
-        <div class="form-control">
-            <label for="text">Deskripsi</label>
-            <input type="text" id="text" placeholder="Masukkan text..." />
-        </div>
-        <div class="form-control">
-            <label for="amount">Jumlah </label>
-            <input type="number" id="amount" placeholder="Masukkan jumlah..." />
-        </div>
-        <div class="form-control">
-            <label for="price">Harga </label>
-            <input type="number" id="price" placeholder="Masukkan harga..." />
-        </div>
-        <button class="btn">Tambahkan transaksi</button>
-        </form>
+{% block content %}
+<h2>Pelacak Keuangan</h2>
+
+<div class="container">
+    <h4>Saldo Anda</h4>
+    <h1 id="balance">Rp. 0,00</h1>
+    <div class="inc-exp-container">
+    <div>
+        <h4>Pendapatan</h4>
+        <p id="money-plus" class="money plus">+\Rp. 0,00</p>
     </div>
-    <h5> {{ name }} - {{ class }} </h5>
-    </body>
-</html>
+    <div>
+        <h4>Pengeluaran</h4>
+        <p id="money-minus" class="money minus">-\Rp. 0,00</p>
+    </div>
+    </div>
+    
+    <a href="{% url 'main:show_detail' %}">
+    <button class="btn">Detail</button>
+    </a>
+    
+    <br />
+    
+    <a href="{% url 'main:create_item' %}">
+        <button>
+            Tambah Transaksi Baru
+        </button>
+    </a>
+</div>
+
+<h5> {{ name }} - {{ class }} </h5>
+
+{% endblock content %}
+
 <!-- source: www.phind.com -->
