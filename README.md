@@ -161,6 +161,9 @@ ketika URL cocok dengan pola maka akan memanggil fungsi yang sesuai.
 * **XML by ID**
 ![XML by ID postman](XML_byID_postman.png)
 
+* **HTML**
+![create item](createitem_postman.png)
+
 
 
 
