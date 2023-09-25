@@ -36,7 +36,7 @@ def create_item(request):
     return render(request, "create_item.html", context)
 
 def show_detail(request):
-    item = Item.objects.filter(user=request.user)
+    items = Item.objects.filter(user=request.user)
     context = {'items' : items}
     return render(request, "show_detail.html", context)
 
