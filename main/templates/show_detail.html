@@ -1,5 +1,48 @@
 {% extends 'base.html' %} 
 
+{% block meta %}
+    <style>
+        /* Style untuk tabel */
+    table {
+    width: 50%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    }
+
+    /* Style untuk header tabel */
+    th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ccc;
+    }
+
+    /* Style untuk sel tabel */
+    td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    }
+
+    /* Style untuk baris genap */
+    tr:nth-child(even) {
+    background-color: #f2f2f2;
+    }
+
+    /* Style untuk baris ganjil */
+    tr:nth-child(odd) {
+    background-color: #ffffff;
+    }
+
+    /* Style saat kursor diarahkan ke sel */
+    td:hover {
+    background-color: #e0e0e0;
+    transition: background-color 0.3s ease-in;
+    }
+
+    </style>
+{% endblock meta %}
+
 {% block content %}
 <h1>Detail transaksi</h1>
 
@@ -7,10 +50,10 @@
 <table>
     <tr>
         <th>Name</th>
-        <th>| Amount</th>
-        <th>| Price</th>
-        <th>| Description</th>
-        <th>| Date Added</th>
+        <th>Amount</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Date Added</th>
     </tr>
 
     {% for item in items %}
@@ -23,6 +66,10 @@
         </tr>
     {% endfor %}
 </table>
-
+<a href="{% url 'main:show_main' %}">
+    <button>
+        Kembali
+    </button>
+</a>
 {% endblock %}
 
