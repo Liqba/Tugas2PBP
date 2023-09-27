@@ -166,5 +166,30 @@ ketika URL cocok dengan pola maka akan memanggil fungsi yang sesuai.
 
 
 
+# Tugas 4
 
+## Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?
+Usercreationform merupakan kelas yang disediakan Django untuk membuat user baru. form ini meminta informasi yang diperlukan untuk membuat user baru seperti Username, Password1 dan Pasword2. Password2 digunaka untuk komformasi password.
+Kelebihan dari kelas ini adalah mudah digunakan. Kita tidak perlu lagi melakukan implmentasi manual dari awal untuk pembuatan user baru. kita hanya perlu membuat kelas UserCreationForm dan menggunakan method yang telah disediakan oleh kelas UserCreationForm. 
+Kekurangannya, UserCreationForm menyediakan field yang terbatas yaitu Username dan Password. jika kita mau menambahkan field lain misalnya field email kita harus memodifikasi kelas UserCreationForm atau membuat form registrasi user dari awal. Selain itu, kelas UserCreationForm tidak mempunyai fitur validasi apakah Username sudah ada, sehingga kita perlu menambahkannya secara manual.
+Sumber: https://www.javatpoint.com/django-usercreationform
 
+## Apa perbedaan antara autentikasi dan otorisasi dalam konteks Django, dan mengapa keduanya penting?
+Authentication adalah mekanisme memverifikasi apakah pengguna merupakan orang yang mereka klaim. Biasanya melibatkan pencocokan username dan password yang diberi pengguna dengan data yang ada di database. Sedangkan Authorization menentukan hal apa yang dizinkan untuk dilakukan oleh pengguna yang sudah di otentikasi. Contohnya seperti mengedit profil akun sendiri.
+Kedua konsep ini penting. Autentikasi dan otorisasi mencegah akses yang tidak sah ke aplikasi. Autentikasi memastikan hanya pengguna yang sah yang dapat mengakses aplikasi, sedangkan otorisasi memastikan bahwa pengguna hanya dapat melakukan Tindakan yang sesuai dengan izin mereka. 
+Sumber: https://docs.djangoproject.com/en/4.1/topics/auth/
+
+## Apa itu cookies dalam konteks aplikasi web, dan bagaimana Django menggunakan cookies untuk mengelola data sesi pengguna?
+Cookies adalah data kecil yang disimpan di browser pengguna. Cookies digunakan untuk menyimpan informasi tentang pengguna dan preferensinya untuk meningkatkan pengalaman pengguna. Ketika pengguna mengunjungi situs web, situs web akan membaca cookie untuk mengingat pengguna dan preferensinya. Cookies pada Django disimpan dalam bentuk key value pair, contoh Username=liqba. Cookie bisa berisi berbagai jenis informasi tidak terbatas pada username dan bahasa preferensi. 
+Cara Django menggunakan cookies adalah sebagai berikut:
+1.	Ketika pengguna mengunjungi situs, Django membuat sesi baru dan menghasilkan ID sesi unik.
+2.	Django kemudian mengirim cookie ke browser pengguna dengan ID sesi ini.
+3.	Pada kunjungan berikutnya, browser mengirimkan cookie ini kembali ke server. Django kemudian mencocokkan ID sesi dalam cookie dengan data sesi yang disimpan di server.
+4.	Jika ID sesi cocok, Django tahu bahwa request ini berasal dari pengguna yang sama dan dapat mengambil data sesi yang sesuai.
+Sumber: https://www.askpython.com/django/django-cookies
+
+## Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?
+Baik atau buruknya cookie tergantung pada pengembang situs web yang dikunjungi. Secera default cookie aman untuk digunakan sebab data tidak disimpan di server meliankan di web browser klien.  sebuah website tidak bisa membaca cookie dari website lain. namun sebuah website dapat memiliki potongan dari website lain, dan website lain dapat mengakses sekaligus menyimpan cookie pengguna. Dengan ini, potongan web tersebut dapat menampilkan iklan yang disesuaikan dengan prefrensi pengguna juga sekaligus menyimpan aktivitas pengguna. Walaupun website utama tidak menyimpan cookie. sehingga pengguna perlu mewaspadai sebelum menerima cookie dari website, data apa saja yang disimpan didalam cookie.  
+Sumber: https://www.youtube.com/watch?v=I01XMRo2ESg
+
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
