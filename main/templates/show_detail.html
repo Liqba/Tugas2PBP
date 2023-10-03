@@ -1,75 +1,36 @@
-{% extends 'base.html' %} 
-
-{% block meta %}
-    <style>
-        /* Style untuk tabel */
-    table {
-    width: 50%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    }
-
-    /* Style untuk header tabel */
-    th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-    text-align: left;
-    padding: 10px;
-    border: 1px solid #ccc;
-    }
-
-    /* Style untuk sel tabel */
-    td {
-    padding: 10px;
-    border: 1px solid #ccc;
-    }
-
-    /* Style untuk baris genap */
-    tr:nth-child(even) {
-    background-color: #f2f2f2;
-    }
-
-    /* Style untuk baris ganjil */
-    tr:nth-child(odd) {
-    background-color: #ffffff;
-    }
-
-    /* Style saat kursor diarahkan ke sel */
-    td:hover {
-    background-color: #e0e0e0;
-    transition: background-color 0.3s ease-in;
-    }
-
-    </style>
-{% endblock meta %}
+{% extends 'base.html' %}
 
 {% block content %}
-<h1>Detail transaksi</h1>
+<div class="container my-5">
+    <div class="text-center mb-4">
+        <h1>Detail Transaksi</h1>
+    </div>
+    
+    <table class="table table-hover table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Nama</th>
+                <th>Jumlah</th>
+                <th>Harga</th>
+                <th>Deskripsi</th>
+                <th>Tanggal Ditambahkan</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{item.name}}</td>
+                    <td>{{item.amount}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.description}}</td>
+                    <td>{{item.date_added}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-<ul id="list" class="list"></ul>
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Amount</th>
-        <th>Price</th>
-        <th>Description</th>
-        <th>Date Added</th>
-    </tr>
-
-    {% for item in items %}
-        <tr>
-            <td>{{item.name}}</td>
-            <td>{{item.amount}}</td>
-            <td>{{item.price}}</td>
-            <td>{{item.description}}</td>
-            <td>{{item.date_added}}</td>
-        </tr>
-    {% endfor %}
-</table>
-<a href="{% url 'main:show_main' %}">
-    <button>
-        Kembali
-    </button>
-</a>
+    <div class="text-center mt-5">
+        <a href="{% url 'main:show_main' %}" class="btn btn-secondary">Kembali</a>
+    </div>
+</div>
 {% endblock %}
-

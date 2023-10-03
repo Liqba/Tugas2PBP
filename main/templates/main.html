@@ -1,68 +1,47 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
 
-<h2>Pelacak Keuangan</h2>
+<div class="container my-5">
+    <div class="text-center">
+        <h2 class="mb-4">Pelacak Keuangan</h2>
+    </div>
+    
+    <div class="card shadow p-4 mb-5">
+        <div class="text-center mb-4">
+            <h4>Saldo Anda</h4>
+            <h1 id="balance" class="display-4">Rp. 0,00</h1>
+        </div>
 
-<div class="container">
-    <h4>Saldo Anda</h4>
-    <h1 id="balance">Rp. 0,00</h1>
-    <div class="inc-exp-container">
-    <div>
-        <h4>Pendapatan</h4>
-        <p id="money-plus" class="money plus">+\Rp. 0,00</p>
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <h4>Pendapatan</h4>
+                <p id="money-plus" class="money plus text-success">+\Rp. 0,00</p>
+            </div>
+            <div class="col-md-6 text-center">
+                <h4>Pengeluaran</h4>
+                <p id="money-minus" class="money minus text-danger">-\Rp. 0,00</p>
+            </div>
+        </div>
     </div>
-    <div>
-        <h4>Pengeluaran</h4>
-        <p id="money-minus" class="money minus">-\Rp. 0,00</p>
-    </div>
-    </div>
-    
-    <a href="{% url 'main:show_detail' %}">
-    <button class="btn">Detail</button>
-    </a>
-    
-    <br />
-    
-    <a href="{% url 'main:create_item' %}">
-        <button>
+
+    <div class="text-center mb-4">
+        <a href="{% url 'main:show_detail' %}" class="btn btn-primary">
+            Detail
+        </a>
+        <a href="{% url 'main:create_item' %}" class="btn btn-secondary mx-2">
             Tambah Transaksi Baru
-        </button>
-    </a>
-    <h5>Sesi terakhir login: {{ last_login }}</h5>
-    <a href="{% url 'main:logout' %}">
-        <button>
+        </a>
+        <a href="{% url 'main:logout' %}" class="btn btn-danger">
             Logout
-        </button>
-    </a>
+        </a>
+    </div>
+    
+    <div class="text-muted text-center">
+        <h5>Sesi terakhir login: {{ last_login }}</h5>
+        <p>{{ name }} - {{ class }}</p>
+    </div>
+
 </div>
 
-<h5> {{ name }} - {{ class }} </h5>
-
 {% endblock content %}
-
-<!-- source: www.phind.com -->
