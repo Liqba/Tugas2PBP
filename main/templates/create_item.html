@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container my-5">
+<div class="container my-5" style="width: 40%; color: white; background-color: #1E1F32;">
     <div class="text-center mb-4">
         <h1>Tambahkan Transaksi Baru</h1>
     </div>
@@ -9,20 +9,15 @@
     <form method="POST" class="mb-4">
         {% csrf_token %}
         <div class="mb-3">
-            <!-- Loop through form fields and apply Bootstrap classes -->
             {% for field in form %}
                 <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
                 <input type="{{ field.field.widget.input_type }}" class="form-control" id="{{ field.id_for_label }}" name="{{ field.name }}" value="{{ field.value|default:'' }}">
-                {% if field.errors %}
-                    <div class="invalid-feedback">
-                        {{ field.errors.0 }}
-                    </div>
-                {% endif %}
                 <div class="mb-3"></div>
             {% endfor %}
         </div>
         <button type="submit" class="btn btn-primary">Tambahkan</button>
     </form>
+    
 
     <div class="text-center">
         <a href="{% url 'main:show_main' %}" class="btn btn-secondary">Kembali</a>

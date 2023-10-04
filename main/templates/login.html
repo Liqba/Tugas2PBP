@@ -2,11 +2,22 @@
 
 {% block meta %}
     <title>Login</title>
+    <style>
+        .login-container {
+            max-width: 400px;
+            margin: 10vh auto;
+            padding: 20px;
+            background-color: #1E1F32;
+            border-radius: 8px;
+            box-shadow: 0 0 15px #2e2e4f;
+            color: whitesmoke;
+        }
+    </style>
 {% endblock meta %}
 
 {% block content %}
 
-<div class = "login">
+<div class = "login-container">
 
     <h1>Login</h1>
 
@@ -25,7 +36,7 @@
 
             <tr>
                 <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
+                <td><input class="btn btn-primary" type="submit" value="Login" style="color: white;"></td>
             </tr>
         </table>
     </form>

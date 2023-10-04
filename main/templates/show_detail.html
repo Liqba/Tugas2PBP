@@ -1,33 +1,38 @@
 {% extends 'base.html' %}
 
+{% block meta %}
+<style>
+    .card {
+        width: 300px;
+        height: 200px;
+        border-radius: 0; 
+    }
+</style>
+{% endblock meta %}
+
 {% block content %}
-<div class="container my-5">
+<div class="container shadow" style="color: white; background-color: #1E1F32;">
     <div class="text-center mb-4">
         <h1>Detail Transaksi</h1>
     </div>
-    
-    <table class="table table-hover table-bordered table-striped">
-        <thead class="table-dark">
-            <tr>
-                <th>Nama</th>
-                <th>Jumlah</th>
-                <th>Harga</th>
-                <th>Deskripsi</th>
-                <th>Tanggal Ditambahkan</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in items %}
-                <tr>
-                    <td>{{item.name}}</td>
-                    <td>{{item.amount}}</td>
-                    <td>{{item.price}}</td>
-                    <td>{{item.description}}</td>
-                    <td>{{item.date_added}}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+
+    {% for item in items %}
+    <div class="card mb-4" style="color: white; background-color: #1A1B2F;">
+        <div class="card-header">
+            {{ item.name }}
+        </div>
+        <div class="card-body">
+            <p class="card-text">Jumlah: {{ item.amount }}</p>
+            <p class="card-text">Harga: {{ item.price }}</p>
+            <p class="card-text">Deskripsi: {{ item.description }}</p>
+            <p class="card-text">Tanggal Ditambahkan: {{ item.date_added }}</p>
+            <a href="{% url 'main:decrease_item' item.pk %}" class="btn btn-secondary">-</a>
+            <a href="{% url 'main:increase_item' item.pk %}" class="btn btn-secondary">+</a>
+            <a href="{% url 'main:edit_item' item.pk %}" class="btn btn-primary">Edit</a>
+            <a href="{% url 'main:delete_item' item.pk %}" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+    {% endfor %}
 
     <div class="text-center mt-5">
         <a href="{% url 'main:show_main' %}" class="btn btn-secondary">Kembali</a>

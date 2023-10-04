@@ -27,9 +27,9 @@ def create_item(request):
     form = ItemForm(request.POST or None)
 
     if form.is_valid() and request.method == "POST":
-        product = form.save(commit=False)
-        product.user = request.user
-        product.save()
+        item = form.save(commit=False)
+        item.user = request.user
+        item.save()
         return HttpResponseRedirect(reverse('main:show_main'))
 
     context = {'form': form}
@@ -37,8 +37,45 @@ def create_item(request):
 
 def show_detail(request):
     items = Item.objects.filter(user=request.user)
-    context = {'items' : items}
+    context = {'items' : items }
     return render(request, "show_detail.html", context)
+
+def edit_item(request, id):
+    # Get item berdasarkan ID
+    item = Item.objects.get(pk = id)
+
+    # Set item sebagai instance dari form
+    form = ItemForm(request.POST or None, instance=item)
+
+    if form.is_valid() and request.method == "POST":
+        # Simpan form dan kembali ke halaman awal
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "edit_item.html", context)
+
+def delete_item(request, id):
+    # Get data berdasarkan ID
+    item = Item.objects.get(pk = id)
+    # Hapus data
+    item.delete()
+    # Kembali ke halaman awal
+    return HttpResponseRedirect(reverse('main:show_detail'))
+
+def increase_item(request, id):
+    item = Item.objects.get(pk=id)
+    item.amount += 1
+    item.save()
+    return HttpResponseRedirect(reverse('main:show_detail'))
+
+def decrease_item(request, id):
+    item = Item.objects.get(pk=id)
+    if item.amount > 0:  # Periksa apakah jumlah lebih dari 0 sebelum mengurangi
+        item.amount -= 1
+        item.save()
+    return HttpResponseRedirect(reverse('main:show_detail'))
+
 
 def register(request):
     form = UserCreationForm()

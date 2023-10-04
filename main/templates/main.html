@@ -2,30 +2,30 @@
 
 {% block content %}
 
-<div class="container my-5">
-    <div class="text-center">
+<div class="container shadow my-5" style="background-color: #1E1F32;">
+    <div class="text-center" style="color: white;">
         <h1 class="mb-4">Pelacak Keuangan</h1>
     </div>
     
-    <div class="card shadow p-4 mb-5">
-        <div class="text-center mb-4">
+    <div class="card shadow" style="width: 45%; height: 50%; margin: 0 auto; padding: 1rem; color: white; background-color: #232436;">
+        <div class="text-center" style="padding-bottom: 20px;">
             <h4>Saldo Anda</h4>
             <h1 id="balance" class="display-4">Rp. 0,00</h1>
         </div>
 
         <div class="row">
-            <div class="col-md-6 text-center">
+            <div class="text-center" style="width: 50%; margin: 0 auto;">
                 <h4>Pendapatan</h4>
                 <p id="money-plus" class="money plus text-success">+\Rp. 0,00</p>
             </div>
-            <div class="col-md-6 text-center">
+            <div class="text-center" style="width: 50%; margin: 0 auto;">
                 <h4>Pengeluaran</h4>
                 <p id="money-minus" class="money minus text-danger">-\Rp. 0,00</p>
             </div>
         </div>
     </div>
 
-    <div class="text-center mb-4">
+    <div class="text-center mb-4" style="padding-top: 5%;">
         <a href="{% url 'main:show_detail' %}" class="btn btn-primary">
             Detail
         </a>
@@ -37,7 +37,7 @@
         </a>
     </div>
 
-    <div class="text-muted text-center">
+    <div class="text-center" style="color: white;">
         <h5>Sesi terakhir login: {{ last_login }}</h5>
         <p>{{ name }} - {{ class }}</p>
     </div>
