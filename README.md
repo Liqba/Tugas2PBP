@@ -337,3 +337,76 @@ jalankan command berikut di terminal
 
 `git push origin -u main`
 
+# Tugas 5
+
+## No 1
+1. Universal Selector (*):
+
+digunakan untuk memilih dan memberikan gaya ke semua elemen yang ada dalam halaman. Penggunaannya cocok ketika ingin memberikan pengaturan umum seperti box-sizing atau mereset margin dan padding.
+
+2. Type Selector / Element Selector:
+
+Selector ini bertujuan untuk memberikan gaya khusus pada setiap elemen berdasarkan jenisnya. Misalnya, untuk memberikan ukuran font tertentu pada semua elemen h1.
+
+3. Class Selector:
+Class Selector sangat berguna ketika sekelompok elemen memerlukan gaya khusus, namun tidak semua elemen tersebut memiliki jenis yang sama. Dengan class, kita dapat memberikan gaya pada berbagai elemen dan mengulangnya sepanjang halaman.
+
+4. ID Selector:
+
+Digunakan untuk memberikan gaya pada elemen tunggal dengan atribut id tertentu. Sangat cocok untuk pemberian gaya khusus pada elemen yang unik dalam satu halaman. Perlu diingat, sebuah ID harus unik dan hanya boleh digunakan sekali dalam satu halaman.
+
+5. Grouping Selector:
+Memungkinkan pengelompokan beberapa selector sekaligus.
+Dengan selector ini, kita dapat mengurangi pengulangan kode dengan mengelompokkan beberapa selector yang memerlukan gaya yang sama. Ini membantu meningkatkan efisiensi dalam penulisan kode CSS.
+
+
+## No 2
+Header : Merupakan bagian atas atau pembuka dari suatu konten area di halaman web. Umumnya, bagian ini berisi judul atau logo dari situs.
+
+Navigasi (nav): Elemen ini umumnya berisi menu navigasi yang membantu pengguna berpindah antar halaman atau konten di dalam sebuah situs web.
+
+Main Content (main): bagian utama dari halaman web, di mana konten utama disajikan kepada pengguna.
+
+Article: Mewakili konten yang mandiri dan bisa dipahami secara independen dari konten lain di halaman, seperti blog post atau berita.
+
+Section: Membagi dokumen menjadi bagian atau seksi yang berbeda. Biasanya berisi konten yang terkait dengan judul khusus.
+
+Footer: Merupakan bagian penutup dari area konten. Biasanya berisi informasi tambahan seperti hak cipta atau link ke halaman lain.
+
+Figure & Figcaption: Elemen ini digunakan untuk menyajikan konten media, seperti gambar, dengan caption yang opsional.
+
+Time: Memberikan informasi tentang waktu atau tanggal dalam konten.
+
+Video & Audio: Digunakan untuk menampilkan konten media, baik itu video atau audio, dalam halaman web.
+
+referensi: https://www.w3schools.com/html/html5_semantic_elements.asp#:~:text=,element%20can%20be%20used
+
+
+## No 3
+- **Margin**: Jarak antara elemen dengan elemen lainnya di luar border.
+- **Padding**: Jarak antara konten elemen dan border elemen tersebut.
+
+## No 4
+
+Komponen dan Kelas Utilitas: Bootstrap dibangun dengan dua fitur utama yaitu komponen  yang sudah dibuat sebelumnya dan kelas utilitas. Sedangkan Tailwind lebih fokus pada kelas utilitas dan tidak menyediakan komponen yang sudah jadi seperti Bootstrap.
+
+Customisasi dan Fleksibilitas: Tailwind dikenal lebih customizable dan fleksibel dibandingkan dengan Bootstrap.
+
+Kurva Belajar: Kurva belajar untuk Tailwind dianggap tinggi rendah dibandingkan dengan Bootstrap.
+
+Pendekatan Desain: Tailwind bukan kit UI yang sudah jadi dan siap pakai seperti Bootstrap. sehingga dengan Tailwind, pengembang memiliki kebebasan lebih dalam mendesain tampilan sesuai keinginan, sedangkan Bootstrap menyediakan komponen yang sudah jadi dan siap digunakan.
+
+### Kapan sebaiknya menggunakan Bootstrap daripada Tailwind?
+
+1. Ketika kita membutuhkan solusi cepat dengan komponen yang sudah siap pakai.
+2. Jika kita kurang familiar dengan desain dan ingin mengkitalkan komponen yang sudah ada.
+3. Ketika kita bekerja pada proyek dengan tim yang sudah familiar dengan Bootstrap.
+### Kapan sebaiknya menggunakan Tailwind daripada Bootstrap?
+1. Ketika kita membutuhkan fleksibilitas lebih dalam mendesain tampilan.
+2. Ketika kita ingin belajar dan mengembangkan keterampilan desain.
+
+referensi: https://revou.co/kosakata/tailwind, https://dumbways.id/blog/tailwind-vs-bootstrap
+
+
+
+## No 5
