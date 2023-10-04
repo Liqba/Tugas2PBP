@@ -363,6 +363,8 @@ Dengan selector ini, kita dapat mengurangi pengulangan kode dengan mengelompokka
 ## No 2
 Header : Merupakan bagian atas atau pembuka dari suatu konten area di halaman web. Umumnya, bagian ini berisi judul atau logo dari situs.
 
+Div : Adalah kontainer blok yang digunakan untuk mengelompokkan elemen-elemen bersama.
+
 Navigasi (nav): Elemen ini umumnya berisi menu navigasi yang membantu pengguna berpindah antar halaman atau konten di dalam sebuah situs web.
 
 Main Content (main): bagian utama dari halaman web, di mana konten utama disajikan kepada pengguna.
@@ -410,3 +412,13 @@ referensi: https://revou.co/kosakata/tailwind, https://dumbways.id/blog/tailwind
 
 
 ## No 5
+1. menambahkan bootstrap ke aplikasi, bootstrap CSS dan JS saya tambahkan ke file base.html
+2. kemudian menambahkan navbar ke file base.html, kode navbar saya dapatkan dari situs : https://getbootstrap.com/docs/5.3/components/navbar/. di file base.html say atambahkan kode css yang akan diterapkan ke setiap halaman.
+3. di file main.html, saya membagi bagian2 konten main menggunakan tag div. saya gunakan kelas card yang disediakan bootstrap untuk bagian saldo. di bagian saldo saya gunakan sistem grid bootstrap agar teks pendapatan dan pengeluaran letaknya sejajar. selanjutnya saya tambahkan style untuk tiap div yang ada di file main.html
+
+4. di file show_detail, saya mencoba menggunakan approach card untuk menampilkan daftar transaksi, saya kemudian membuat tombol agar terlihat lebih jelas dengan menggunakan kelas yang disediakan bootstrap yaitu btn-secondary. di show_detail saya juga menambhakan padding dan margin agar elemen tidak terlalu berdekatan. saya mengganti style lama dengan CSS yang disediakan bootstrap seperti menambahkan efek hover untuk tabel. 
+
+5. di file create_item.html, saya menggunakan kelas bootstrap untuk form, saya melakukan iterasi untuk setiap field dan menerapkan kelas bootstrap. 
+
+6. menambahkan fitur edit dan delete
+membuat fungsi edit_item dan delete_item di vies.py buat html untuk keduanya kemudian melakukan routing di file urls.py 
