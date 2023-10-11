@@ -86,7 +86,10 @@ def register(request):
             form.save()
             messages.success(request, 'Your account has been successfully created!')
             return redirect('main:login')
-    context = {'form':form}
+    context = {
+        'form':form,
+        'show_navbar' : False,
+    }
     return render(request, 'register.html', context)
 
 def login_user(request):
@@ -101,7 +104,9 @@ def login_user(request):
             return response
         else:
             messages.info(request, 'Sorry, incorrect username or password. Please try again.')
-    context = {}
+    context = {
+        'show_navbar': False,
+    }
     return render(request, 'login.html', context)
 
 def logout_user(request):

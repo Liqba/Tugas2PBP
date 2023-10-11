@@ -2,10 +2,22 @@
 
 {% block meta %}
 <style>
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        /* background-color: red; */
+        width: 79%; 
+        margin: 0 auto;
+    }
     .card {
         width: 300px;
         height: 200px;
         border-radius: 0; 
+        margin-bottom: 20px;
+        margin-right: 20px;
+        margin-left: 20px;
+        color: white; 
+        background-color: #232436 !important; 
     }
 </style>
 {% endblock meta %}
@@ -16,24 +28,25 @@
         <h1>Detail Transaksi</h1>
     </div>
 
-    {% for item in items %}
-    <div class="card mb-4" style="color: white; background-color: #1A1B2F;">
-        <div class="card-header">
-            {{ item.name }}
+    <div class="card-container">
+        {% for item in items %}
+        <div class="card mb-4">
+            <div class="card-header">
+                {{ item.name }}
+            </div>
+            <div class="card-body">
+                <p class="card-text">Jumlah: {{ item.amount }}</p>
+                <p class="card-text">Harga: {{ item.price }}</p>
+                <p class="card-text">Deskripsi: {{ item.description }}</p>
+                <p class="card-text">Tanggal Ditambahkan: {{ item.date_added }}</p>
+                <a href="{% url 'main:decrease_item' item.pk %}" class="btn btn-secondary">-</a>
+                <a href="{% url 'main:increase_item' item.pk %}" class="btn btn-secondary">+</a>
+                <a href="{% url 'main:edit_item' item.pk %}" class="btn btn-primary">Edit</a>
+                <a href="{% url 'main:delete_item' item.pk %}" class="btn btn-danger">Delete</a>
+            </div>
         </div>
-        <div class="card-body">
-            <p class="card-text">Jumlah: {{ item.amount }}</p>
-            <p class="card-text">Harga: {{ item.price }}</p>
-            <p class="card-text">Deskripsi: {{ item.description }}</p>
-            <p class="card-text">Tanggal Ditambahkan: {{ item.date_added }}</p>
-            <a href="{% url 'main:decrease_item' item.pk %}" class="btn btn-secondary">-</a>
-            <a href="{% url 'main:increase_item' item.pk %}" class="btn btn-secondary">+</a>
-            <a href="{% url 'main:edit_item' item.pk %}" class="btn btn-primary">Edit</a>
-            <a href="{% url 'main:delete_item' item.pk %}" class="btn btn-danger">Delete</a>
-        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-
     <div class="text-center mt-5">
         <a href="{% url 'main:show_main' %}" class="btn btn-secondary">Kembali</a>
     </div>
