@@ -1,7 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
+
+{% block meta %}
+<style>
+    .container {
+        background-color: rgba(18, 18, 18, 0.97); /* #121212 dengan opasitas 0.7 */
+        border: 2px white; 
+        border-radius: 10px; 
+        padding: 20px; 
+        width: 70% !important; 
+        margin: 0 auto;
+    }
+</style>
+{% endblock meta %}
+
 {% block content %}
-<div class="container shadow my-5" style="background-color: #121212; border: 2px white; border-radius: 10px; padding: 20px; width: 100%; margin: 0 auto;">
+<div class="container shadow my-5">
     <div class="text-center" style="color: white;">
         <h1 class="mb-4">Pengelola Keuangan</h1>
     </div>
