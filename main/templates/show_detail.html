@@ -8,6 +8,7 @@
         /* background-color: red; */
         width: 79%; 
         margin: 0 auto;
+        
     }
     .card {
         width: 300px;
@@ -17,20 +18,20 @@
         margin-right: 20px;
         margin-left: 20px;
         color: white; 
-        background-color: #232436 !important; 
+        background-color: #222222 !important; 
     }
 </style>
 {% endblock meta %}
 
 {% block content %}
-<div class="container shadow" style="color: white; background-color: #1E1F32;">
+<div class="container shadow" style="color: black; background-color: white;">
     <div class="text-center mb-4">
         <h1>Detail Transaksi</h1>
     </div>
 
     <div class="card-container">
         {% for item in items %}
-        <div class="card mb-4">
+        <div class="card mb-4" id="item_card_{{ item.pk }}">
             <div class="card-header">
                 {{ item.name }}
             </div>
@@ -47,8 +48,100 @@
         </div>
         {% endfor %}
     </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambahkan transaksi baru</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form" onsubmit="return false;">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="amount" class="col-form-label">Amount:</label>
+                            <input type="number" class="form-control" id="amount" name="amount"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="price" class="col-form-label">Price:</label>
+                            <input type="number" class="form-control" id="price" name="price"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="col-form-label">Description:</label>
+                            <textarea class="form-control" id="description" name="description"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah Transaksi (by AJAX)</button>
     <div class="text-center mt-5">
         <a href="{% url 'main:show_main' %}" class="btn btn-secondary">Kembali</a>
     </div>
 </div>
+
+
+
+<script>
+    async function getItems() {
+        return fetch("{% url 'main:get_item_json' %}").then((res) => res.json())
+    }
+
+    async function refreshItems() {
+        const items = await getItems()
+
+        items.forEach((item) => {
+            const card = document.createElement('div')
+            card.classList.add('card', 'mb-4')
+            card.id = `item_card_${item.pk}`
+
+            const decreaseURL = `/decrease_item/${item.pk}/`;
+            const increaseURL = `/increase_item/${item.pk}/`;
+            const editURL = `/edit-item/${item.pk}/`;
+            const deleteURL = `/delete/${item.pk}/`;
+
+            card.innerHTML = `
+                <div class="card-header">
+                    ${item.fields.name}
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Jumlah: ${item.fields.amount}</p>
+                    <p class="card-text">Harga: ${item.fields.price}</p>
+                    <p class="card-text">Deskripsi: ${item.fields.description}</p>
+                    <p class="card-text">Tanggal Ditambahkan: ${item.fields.date_added}</p>
+                    <a href="${decreaseURL}" class="btn btn-secondary">-</a>
+                    <a href="${increaseURL}" class="btn btn-secondary">+</a>
+                    <a href="${editURL}" class="btn btn-primary">Edit</a>
+                    <a href="${deleteURL}" class="btn btn-danger">Delete</a>
+                </div>`
+
+            const oldCard = document.getElementById(`item_card_${item.pk}`)
+            oldCard.parentNode.replaceChild(card, oldCard)
+        })
+    }
+
+    refreshItems()
+
+    async function addItem() {
+        fetch("{% url 'main:add_item_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshItems)
+
+        document.getElementById("form").reset() 
+        return false
+    }
+
+    document.getElementById("button_add").onclick = addItem
+</script>
 {% endblock %}
