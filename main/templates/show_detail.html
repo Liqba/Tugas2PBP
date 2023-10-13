@@ -4,7 +4,7 @@
 <style>
     .container {
         color: white ; 
-        background-color: rgba(18, 18, 18, 0.97); 
+        background-color: rgba(30, 31, 50, 0.97); 
     }
     .card-container {
         display: flex;
@@ -21,7 +21,15 @@
         margin-right: 20px;
         margin-left: 20px;
         color: white !important; 
-        background-color: #222222 !important; 
+        background-color: #181929 !important; 
+    }
+
+    .modal .modal-content {
+        background-color: #181929 !important;
+        color: white !important;
+    }
+    .form-control {
+        background-color: rgba(255, 255, 255, 0.80)  !important;
     }
 </style>
 {% endblock meta %}
@@ -87,7 +95,9 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah Transaksi (by AJAX)</button>
+    <div class="text-center mt-5">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah Transaksi (by AJAX)</button>
+    </div>
     <div class="text-center mt-5">
         <a href="{% url 'main:show_main' %}" class="btn btn-secondary">Kembali</a>
     </div>

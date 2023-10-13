@@ -422,3 +422,191 @@ referensi: https://revou.co/kosakata/tailwind, https://dumbways.id/blog/tailwind
 
 6. menambahkan fitur edit dan delete
 membuat fungsi edit_item dan delete_item di vies.py buat html untuk keduanya kemudian melakukan routing di file urls.py 
+
+
+# Tugas 6
+## No 1 : Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
+asynchronus programming memungkinkan  operasi atau perintah dieksekusi secara bersamaan, tanpa harus menunggu proses antrian. sedangkan pada synchronus programming, proses eksekusi perintah dilakukan secara sekuansial, dimana setiap proses harus menunggu proses sebelumnya selesai untuk bisa melanjutkan. 
+[sumber](https://community.algostudio.net/memahami-synchronous-dan-asynchronous-dalam-pemrograman/)
+
+## No 2 : Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.
+paradigma event drivent programming adalah paradigma dimana alur eksikusi program ditentukan oleh peristiwa tertentu seperti tindakan pengguna, tanggapan dari sistem , atau pesan dari program lain. event driven programming mempunyai karakteristik asinkron. Misalnya, pada sebuah halaman web terdapat tombol yang, saat ditekan, akan memulai permintaan AJAX. Daripada menunggu hingga permintaan selesai, kita bisa menetapkan event listener yang akan mengaktifkan fungsi tertentu setelah permintaan selesai. Fungsi ini nantinya akan mengelola hasil dari permintaan AJAX, memfasilitasi eksekusi kode yang asinkron. Model pemrograman ini juga berfungsi saat berinteraksi dengan pengguna, seperti saat pengguna mengklik atau menggerakkan mouse ke suatu elemen. Interaksi ini dapat dikelola dengan event listener, yang akan mengaktifkan fungsi tertentu saat peristiwa spesifik berlangsung. Dengan demikian, halaman web menjadi lebih dinamis, memungkinkan pengguna berinteraksi dengan elemen dan mendapatkan feedback yang sesuai.
+
+[sumber](https://reintech.io/blog/what-is-event-driven-programming-in-javascript)
+
+
+## No 3 : Jelaskan penerapan asynchronous programming pada AJAX.
+Proses asinkron AJAX bekerja dengan cara sebagai berikut:
+Setelah halaman HTML selesai dimuat, data diambil dari server web. tanpa perlu memuat ulang seluruh halaman web, data tersebut dapat diperbarui. Selanjutnya, transfer data dilakukan ke server web di latar belakang. Keunikan dari semua langkah asinkron ini adalah kemampuannya untuk menciptakan konten web HTML yang responsif dam lebih cepat, sehingga memberikan interaksi yang alami bagi pengguna dengan halaman web.
+[sumber](https://www.theserverside.com/definition/Ajax-Asynchronous-JavaScript-and-XML#:~:text=The%20'Asynchronous'%20in%20AJAX&text=Here's%20how%20the%20various%20AJAX,web%20server%20in%20the%20background.)
+
+## No 4 : Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.
+Fetch API adalah bawaan dari JavaScript modern dan tidak memerlukan library tambahan. Salah satu keunggulannya adalah penggunaan Promise yang memudahkan chaining dan penanganan kesalahan. Dibandingkan dengan AJAX di jQuery, Fetch API lebih fleksibel dan memiliki lebih banyak fitur. Di sisi lain, jQuery AJAX adalah bagian dari library jQuery. Ini berarti kita perlu menambahkan library jQuery ke proyek kita. Meskipun demikian, jQuery AJAX menawarkan sintaks yang lebih sederhana dan mudah digunakan. Kelebihan lainnya adalah jQuery AJAX sudah ada sejak lama dan memiliki dukungan yang baik di banyak browser lama. Meskipun jQuery menyediakan sintaks yang sederhana dan mudah digunakan, Fetch API mungkin merupakan pilihan yang lebih baik. Karena Fetch API tidak memerlukan dependensi tambahan dan fleksibilitas lebih tinggi. Selain itu, dengan semakin banyak browser modern yang mendukung Fetch API.
+
+[referensi](https://forum.freecodecamp.org/t/why-would-you-use-a-fetch-get-request-instead-of-a-jquery-get-request/185051)
+
+## No 5 : Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+1. buat fungsi get_item_json dan routing url
+```
+def get_item_json(request):
+    product_item = Item.objects.all()
+    return HttpResponse(serializers.serialize('json', product_item))
+```
+routing di urls.py:
+```
+    path('get-product/', get_item_json, name='get_item_json'),
+```
+
+2. buat fungsi add_item_ajax dan routing url
+```
+@csrf_exempt
+def add_item_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        amount = request.POST.get("amount")
+        description = request.POST.get("description")
+        price = request.POST.get("price")
+        user = request.user
+
+        new_item = Item(name=name, amount=amount, description=description, price=price, user=user)
+        new_item.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
+```
+routing di urls.py:
+```
+    path('create-product-ajax/', add_item_ajax, name='add_item_ajax')
+```
+
+3. tambahkan modal form
+modal didapatkan dari [getbootstrap](https://getbootstrap.com/docs/4.0/components/modal/#varying-modal-content)
+```
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambahkan transaksi baru</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form" onsubmit="return false;">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="amount" class="col-form-label">Amount:</label>
+                            <input type="number" class="form-control" id="amount" name="amount"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="price" class="col-form-label">Price:</label>
+                            <input type="number" class="form-control" id="price" name="price"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="col-form-label">Description:</label>
+                            <textarea class="form-control" id="description" name="description"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center mt-5">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah Transaksi (by AJAX)</button>
+    </div>
+    <div class="text-center mt-5">
+        <a href="{% url 'main:show_main' %}" class="btn btn-secondary">Kembali</a>
+    </div>
+</div>
+```
+kode tersebut saya sesuaikan dengan field model saya
+
+4. buat script untuk fungsi 
+disini saya membuat 4 fungsi java script yaitu getItems, createCard, refreshItems, dan addItem
+```
+<script>
+    async function getItems() {
+        return fetch("{% url 'main:get_item_json' %}").then((res) => res.json())
+    }
+
+    function createCard(item) {
+    const card = document.createElement('div')
+    card.classList.add('card', 'mb-4')
+    card.id = `item_card_${item.pk}`
+
+    const decreaseURL = `/decrease_item/${item.pk}/`;
+    const increaseURL = `/increase_item/${item.pk}/`;
+    const editURL = `/edit-item/${item.pk}/`;
+    const deleteURL = `/delete/${item.pk}/`;
+
+    card.innerHTML = `
+        <div class="card-header">
+            ${item.fields.name}
+        </div>
+        <div class="card-body">
+            <p class="card-text">Jumlah: ${item.fields.amount}</p>
+            <p class="card-text">Harga: ${item.fields.price}</p>
+            <p class="card-text">Deskripsi: ${item.fields.description}</p>
+            <p class="card-text">Tanggal Ditambahkan: ${item.fields.date_added}</p>
+            <a href="${decreaseURL}" class="btn btn-secondary">-</a>
+            <a href="${increaseURL}" class="btn btn-secondary">+</a>
+            <a href="${editURL}" class="btn btn-primary">Edit</a>
+            <a href="${deleteURL}" class="btn btn-danger">Delete</a>
+        </div>`
+
+        return card;
+    }
+
+    async function refreshItems() {
+        const items = await getItems()
+        const cardContainer = document.querySelector('.card-container');
+        cardContainer.innerHTML = '';  
+
+        items.forEach((item) => {
+            const card = createCard(item);
+            cardContainer.appendChild(card);
+        });
+    }
+
+    async function addItem() {
+        fetch("{% url 'main:add_item_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        })
+        .then(() => {
+            document.getElementById("form").reset();
+            refreshItems();  
+        });
+    }
+
+    document.getElementById("button_add").onclick = addItem;
+</script>
+```
+
+1. **`getItems`:** Fungsi ini membuat panggilan HTTP `fetch` ke URL yang ditentukan untuk mendapatkan data item dalam format JSON. Fungsi ini menggunakan metode `then` untuk mengonversi respons ke format JSON sebelum mengembalikannya.
+  
+2. **`createCard`:** Fungsi ini menerima objek item sebagai argumen dan membuat elemen DOM baru (`div`) yang berfungsi sebagai kartu untuk menampilkan informasi item. Terakhir, mengembalikan elemen kartu yang telah dibuat.
+
+3. **`refreshItems`:** Fungsi ini mengambil semua item menggunakan fungsi `getItems`, kemudian mengosongkan dan mengisi ulang kontainer kartu dengan kartu baru yang dihasilkan oleh fungsi `createCard`. Ini akan menunjukkan update terbaru di layar pengguna.
+
+4. **`addItem`:** Fungsi ini membuat panggilan HTTP `fetch` dengan metode "POST" untuk menambahkan item baru ke database. Fungsi ini mengambil data form dari elemen form dengan ID 'form', mengirimkannya ke server, lalu mengatur ulang formulir dan refresh tampilan item dengan memanggil `refreshItems`.
+
+5. **Event Listener**: Di akhir skrip, event listener ditambahkan ke tombol dengan ID 'button_add' yang akan memanggil fungsi `addItem` ketika tombol diklik.
+
+
+
+5. buat direktori staticfiles
+di settings.py poryek saya tambahkan
+`STATIC_ROOT = 'staticfiles'`
+kemudian jalankan perintah
+`python manage.py collectstatic`
+pada terminal
+
+6. add commit push
