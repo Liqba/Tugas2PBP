@@ -610,3 +610,5 @@ kemudian jalankan perintah
 pada terminal
 
 6. add commit push
+
+## deployment: [WEB](http://muhammad-iqbal215-tugas.pbp.cs.ui.ac.id/)
