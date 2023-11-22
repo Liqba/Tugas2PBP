@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound, JsonResponse
 from main.form import ItemForm
 from main.models import Item
 from django.urls import reverse
@@ -48,7 +48,7 @@ def edit_item(request, id):
     # Set item sebagai instance dari form
     form = ItemForm(request.POST or None, instance=item)
 
-    if form.is_valid() and request.method == "POST":
+    if form.is_valid() and request.method == "POST":    
         # Simpan form dan kembali ke halaman awal
         form.save()
         return HttpResponseRedirect(reverse('main:show_detail'))
@@ -138,8 +138,25 @@ def logout_user(request):
 
 
 
+# FLUTTER
+@csrf_exempt
+def create_product_flutter(request):
+    if request.method == 'POST':
+        
+        data = json.loads(request.body)
 
+        new_product = Item.objects.create(
+            user = request.user,
+            name = data["name"],
+            price = int(data["price"]),
+            description = data["description"]
+        )
 
+        new_product.save()
+
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)
 
 
 
